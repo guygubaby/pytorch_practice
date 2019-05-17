@@ -21,8 +21,8 @@ if __name__ == '__main__':
     # print(a.size())
 
     a=torch.randn(3,4)
-    # print(a)
-    # print(torch.max(a,1)[1])
-    # print(torch.argmax(a,1).data.squeeze())
+    print(a)
+    print(torch.max(a,1)[1])
+    print(torch.argmax(a,1).data.squeeze())
 
-    print(a.size(0))
+    # print(a.size(0))

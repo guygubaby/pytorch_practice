@@ -77,9 +77,16 @@ if __name__ == '__main__':
             loss.backward()
             optimizer.step()
 
-            if step%100==0:
+            if step%200==0:
                 test_output=cnn(test_x)
+                # print(test_output.size())
                 predict_y=torch.argmax(test_output,1).data.squeeze()
                 acc=(predict_y==test_y).sum().item()/float(test_y.size(0))
 
                 print(f'epoch : {epoch} , loss : {loss} , acc : {acc}')
+
+    test_out=cnn(test_x[:10])
+    # print(test_out.size())
+    pred_out=torch.argmax(test_out,1).data.squeeze()
+    print('predict number ->',pred_out.numpy())
+    print('real number ->',test_y[:10].numpy())
