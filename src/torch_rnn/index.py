@@ -22,8 +22,8 @@ def load_data():
         transform=transforms.ToTensor()
     )
 
-    test_x=Variable(test_data.data).type(torch.FloatTensor)[:2000]/255.
-    test_y=test_data.targets.squeeze()[:2000]
+    test_x=Variable(test_data.data).type(torch.FloatTensor)[:2000].cuda()/255.
+    test_y=test_data.targets.squeeze()[:2000].cuda()
     # print(test_data.targets.numpy().squeeze()[:2000].shape)
 
     train_loader=Data.DataLoader(dataset=train_data,shuffle=True,batch_size=64)
@@ -67,6 +67,7 @@ if __name__ == '__main__':
     # print(test_x.size(),test_y.shape)
 
     rnn=RNN()
+    rnn.cuda()
     print(rnn)
 
     optimizer=torch.optim.RMSprop(rnn.parameters(),alpha=0.9)
@@ -75,9 +76,9 @@ if __name__ == '__main__':
     for epoch in range(1):
         for step,(x,y) in enumerate(train_loader):
             # print('x->',x.size())
-            batch_x=Variable(x.view(-1,28,28)) # reshape x to (batch, time_step, input_size)
+            batch_x=Variable(x.view(-1,28,28)).cuda() # reshape x to (batch, time_step, input_size)
             # print('view x ->',batch_x.size())
-            batch_y=Variable(y)
+            batch_y=Variable(y).cuda()
 
             out=rnn(batch_x)
             loss=loss_func(out,batch_y)

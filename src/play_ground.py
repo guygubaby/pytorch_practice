@@ -5,6 +5,10 @@ import torch.nn.functional as F
 
 
 if __name__ == '__main__':
+    a=torch.linspace(-10,10,10)
+    print(a)
+    print(torch.log(a))
+
     # x=torch.linspace(-10,10,100)
     # y=torch.tanh(x)
     # y1=torch.sigmoid(x)
@@ -14,9 +18,9 @@ if __name__ == '__main__':
     # plt.legend(['tanh','sigmoid'])
     # plt.show()
 
-    a=np.linspace(-10,10,10)
-    b=np.linspace(-100,100,10)
-    print(a.shape,b.shape,zip(a,b))
+    # a=np.linspace(-10,10,10)
+    # b=np.linspace(-100,100,10)
+    # print(a.shape,b.shape,zip(a,b))
     # for i,j in zip(a,b):
     #     print(i,j)
 
